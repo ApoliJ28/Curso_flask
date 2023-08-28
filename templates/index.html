@@ -1,12 +1,22 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{dato.titulo}}</title>
-</head>
-<body>
-    <h1>Encabezado Index</h1>
-    <h2>{{dato.encabezado}}</h2>
-</body>
-</html>
+{% extends './base.html' %}
+
+{% block title %}
+<title>{{dato.titulo}}</title>
+{% endblock %}
+
+
+{% block contenido %}
+<h1>Encabezado acerca de</h1>
+{{super()}}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="alert alert-info">
+        {% for message in messages %}
+        <h1 style="color: red">{{message}}</h1>
+        {% endfor %}
+    </div>
+    {% endif%}
+{% endwith %}
+<h1>Encabezado Index</h1>
+<h2>{{dato.encabezado}}</h2>
+{% endblock %}
